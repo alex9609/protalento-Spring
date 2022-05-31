@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head th:insert="head.html">
+</head>
+<body>
+<div th:insert="navbar.html"></div>
+<main>
+    <div class="container">
+    <header>
+        <h1>Bienvenido : USUARIO</h1>
+    </header>
+    <section>
+        <a class="btn btn-primary"
+            role="button"
+        th:href="@{/cupon/list}">
+            Ver listado
+        </a>
+    </section>
+    </div>
+    <footer class="pt-3 text-mutted border-top">
+        Bootcapmp java Spring mvc
+    </footer>
+</main>
+</body>
+<div th:insert="script.html"></div>
+
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:insert="head.html"></head>
+<body>
+    <div th:insert="navbar.html"></div>
+<main>
+    <div class="container">
+    <!--ESTA CONECTADO AL OBJETO EN EL MODEL -->
+    <form
+            class="row need-validation was-validated"
+            action="#"
+            th:action="@{/cupon/update}"
+            th:method="POST"
+            th:object="${CUPON}"
+    >
+        <div class="form-group">
+            <label for="id" class="control-label col-sm-4">ID</label>
+            <input name="id"
+                   id="id"
+                   type="text"
+                   th:field="*{id}"
+                   class="form-control"
+                   readonly
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="nombre" class="control-label col-sm-4">Nombre</label>
+            <input name="nombre"
+                   id="nombre"
+                   type="text"
+                   th:field="*{nombre}"
+                   class="form-control"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="codigo" class="control-label col-sm-4">Codigo</label>
+            <input name="codigo"
+                   id="codigo"
+                   type="text"
+                   th:field="*{codigo}"
+                   class="form-control"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="fechaVigenciaDesde" class="control-label col-sm-4">Fecha vigencia desde</label>
+            <input name="fechaVigenciaDesde"
+                   id="fechaVigenciaDesde"
+                   type="date"
+                   th:field="*{fechaVigenciaDesde}"
+                   class="form-control"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="fecha_vigencia_hasta" class="control-label col-sm-4">Fecha vigencia hasta</label>
+            <input name="fecha_vigencia_hasta"
+                   id="fecha_vigencia_hasta"
+                   type="date"
+                   th:field="*{fecha_vigencia_hasta}"
+                   class="form-control"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="descuento" class="control-label col-sm-4">Descuento</label>
+            <input name="descuento"
+                   id="descuento"
+                   type="text"
+                   th:field="*{descuento}"
+                   class="form-control"
+            >
+        </div>
+        <button class="btn btn-success">
+            Guardar
+        </button>
+        <a class="btn btn-info"
+        role="button"
+        th:href="@{/cupon/lis}">
+            Volver
+        </a>
+
+    </form>
+ </div>
+</main>
+<div th:insert="script.html"></div>
+</body>
+</html>
