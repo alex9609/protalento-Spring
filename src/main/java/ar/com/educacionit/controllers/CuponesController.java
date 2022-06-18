@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
@@ -44,6 +46,25 @@ public class CuponesController {
     @GetMapping("/delete")
     public String delete(@RequestParam(value="id", required = true) Long id){
         this.service.delete(id);
+        return "redirect:/cupon/list";
+    }
+
+    @RequestMapping("/new")
+    public ModelAndView newCupon(){
+
+        Cupones cupon = new Cupones();
+        ModelAndView modelAndView = new ModelAndView(ViewsEnum.NEW.getView());
+        modelAndView.addObject("CUPON",cupon);
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/save", method=RequestMethod.POST)
+    public String save(@Valid @ModelAttribute(name="CUPON") Cupones cupones, BindingResult result){
+
+        if(result.hasErrors()){
+            return ViewsEnum.NEW.getView();
+        }
+        this.service.save(cupones);
         return "redirect:/cupon/list";
     }
 }

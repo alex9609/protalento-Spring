@@ -4,6 +4,10 @@ package ar.com.educacionit.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -17,9 +21,11 @@ public class Cupones {
     @Column(name="nombre",length = 100, nullable = false)
     private String nombre;
 
+    @NotEmpty(message = "Debe completar el codigo")
     @Column(name="codigo",length = 10, nullable = false,unique = true)
     private String codigo;
 
+    @NotNull(message = "Debe completar la fecha")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name="fecha_vigencia_desde")
     private Date fechaVigenciaDesde;
@@ -28,6 +34,9 @@ public class Cupones {
     @Column(name="fecha_vigencia_hasta")
     private Date fecha_vigencia_hasta;
 
+    @NotNull
+    @Min(value= 1)
+    @Max(value=100)
     @Column(name="descuento")
     private Long descuento;
 
